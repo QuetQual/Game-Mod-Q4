@@ -1,0 +1,108 @@
+/*
+ Credit to https://iddevnet.dhewm3.org/quake4/MakeAMod-DMSP.html
+ I have no idea how I would have figured this out without this resource, below is the script used to spawn monsters in and create those spawn points etc, 
+*/
+
+
+float makeSpawns()
+{
+	float i, j = 0;
+	entity sn, nn;
+	string ne;
+	for (i = 1; i < 64; i++) 
+	{
+		ne = ("info_player_deathmatch_" + i);
+		sn = sys.getEntity(ne);
+		if (sn) 
+		{
+			ne = "dudeSpawnPoint_" + j;
+			sys.setSpawnArg( "name", ne );
+			sys.setSpawnArg( "origin", sn.getWorldOrigin() );
+			nn = sys.spawn( "target_null" );
+			j++;
+		}
+	}
+	return j;
+}
+
+void Spawns( float j )
+{
+	float i;
+	entity sn;
+	string ne;
+	for (i = 0; i <= j; i++) 
+	{
+		ne = ("dudeSpawnPoint_" + i);
+		sn = sys.getEntity(ne);
+		if (sn) 
+		{
+			sys.setSpawnArg("target_" + i, ne );
+		}
+	}
+}
+
+void monsterSpawner()
+{
+	float j = makeSpawns();	//makes the spawn points
+
+	sys.setSpawnArg("def_spawn", "monster_strogg_marine");
+	sys.setSpawnArg("def_spawn_1", "monster_strogg_marine");
+	sys.setSpawnArg("def_spawn_2", "monster_strogg_marine");
+	sys.setSpawnArg("def_spawn_3", "monster_strogg_marine");
+	sys.setSpawnArg("def_spawn_4", "monster_strogg_marine");
+	sys.setSpawnArg("def_spawn_5", "monster_strogg_marine");
+	sys.setSpawnArg("def_spawn_6", "monster_strogg_marine");
+	sys.setSpawnArg("def_spawn_7", "monster_strogg_marine");
+	sys.setSpawnArg("def_spawn_8", "monster_strogg_marine");
+	sys.setSpawnArg("def_spawn_9", "monster_strogg_marine_sgun"); //sniper i think?
+	sys.setSpawnArg("def_spawn_10", "monster_strogg_marine_sgun");
+	sys.setSpawnArg("def_spawn_11", "monster_strogg_marine_sgun");
+	sys.setSpawnArg("def_spawn_12", "monster_strogg_marine_sgun");
+	sys.setSpawnArg("def_spawn_13", "monster_strogg_marine_mgun"); //machine gun pretty sure?
+	sys.setSpawnArg("def_spawn_14", "monster_strogg_marine_mgun");
+	sys.setSpawnArg("def_spawn_15", "monster_strogg_marine_mgun");
+	sys.setSpawnArg("def_spawn_16", "monster_strogg_marine_mgun");
+	sys.setSpawnArg("def_spawn_17", "monster_strogg_marine_mgun");
+	sys.setSpawnArg("def_spawn_18", "monster_strogg_marine_mgun");
+	sys.setSpawnArg("def_spawn_19", "monster_strogg_marine_mgun");
+	sys.setSpawnArg("def_spawn_20", "monster_strogg_marine_mgun");
+	sys.setSpawnArg("def_spawn_21", "monster_strogg_marine_mgun");
+
+	//sorta a boss - extra rare
+	sys.setSpawnArg("def_spawn_22", "monster_lt_tank");
+
+	sys.waitFrame();
+	sys.setSpawnArg("max_active",j);			
+	sys.setSpawnArg("delay",(7));
+	sys.setSpawnArg("auto_target","1");
+	sys.setSpawnArg("face_enemy","1");
+	sys.setSpawnArg("skipVisible","0");
+	sys.setSpawnArg("remove","0");				
+	sys.setSpawnArg("spawn_neverdormant","1");
+	
+	sys.waitFrame();
+	
+	Spawns(j);	// reuses spawns that were already used
+	
+	entity dudeSpawner = sys.spawn( "func_spawner" );
+	sys.trigger(dudeSpawner);
+}
+
+//above is all the spawn/monster stuff - below is item/powerup drops stuff (if i get it to work)
+
+
+
+
+				
+				
+				// main c:
+void main()
+{	
+	
+	sys.println("exec cstmConfig.cfg"); //will this work?
+	sys.wait(2);
+	sys.println("Get Ready");
+	sys.wait(2);
+	monsterSpawner();
+	sys.println("BEGIN!");
+}

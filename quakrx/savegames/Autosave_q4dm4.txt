@@ -1,0 +1,4 @@
+"Autosave q4dm4"
+"^:Map Start	^0q4dm4"
+""
+nooverwrite
