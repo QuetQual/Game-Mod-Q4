@@ -1,0 +1,4 @@
+"Autosave quakrx"
+"^:Map Start	^0quakrx"
+""
+nooverwrite

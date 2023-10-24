@@ -1,0 +1,93 @@
+windowDef Desktop
+{
+	rect	0,0,640,480
+	visible	1
+	choiceDef ShopTitle
+	{
+		rect	0,-1,674,68
+		visible	1
+		forecolor	0.501,0.501,0.501,1
+		choices	" QuaKRX - SHOP"
+		textscale	1
+		backcolor	0.741,0.741,0.741,1
+		font	"fonts/r_strogg"
+		textalign	1
+		textstyle	2
+		bordersize	2
+		bordercolor	1,0,0,1
+	}
+	windowDef ItemOne
+	{
+		rect	52,181,132,189
+		visible	1
+		backcolor	0.482,0.482,0.482,1
+		bordersize	2
+		bordercolor	1,0,0,1
+
+		onAction {
+			set "ItemOne::visible" "0" ;
+		}
+
+	}
+	windowDef ItemTwo
+	{
+		rect	248,182,131,188
+		visible	1
+		backcolor	0.501,0.501,0.501,1
+		bordersize	2
+		bordercolor	1,0,0,1
+
+		onAction {
+			set "ItemTwo::visible" "0" ;
+		}
+
+	}
+	windowDef ItemThree
+	{
+		rect	448,182,131,188
+		visible	1
+		backcolor	0.498,0.498,0.498,1
+		bordersize	2
+		bordercolor	1,0,0,1
+
+		onAction {
+			set "ItemThree::visible" "0" ;
+		}
+
+	}
+	windowDef Currency
+	{
+		rect	407,65,286,42
+		visible	1
+		forecolor	1,1,1,1
+		text	"  Bits: ___"
+		textscale	0.5
+		font	"fonts/r_strogg"
+		bordersize	2
+		bordercolor	1,0,0,1
+	}
+	windowDef unnamed
+	{
+		rect	70,149,118,40
+		visible	1
+		forecolor	1,1,1,1
+		text	"Press_1"
+		textscale	0.5
+	}
+	windowDef unnamed1
+	{
+		rect	266,150,100,100
+		visible	1
+		forecolor	1,1,1,1
+		text	"Press_2"
+		textscale	0.5
+	}
+	windowDef unnamed2
+	{
+		rect	465,154,100,100
+		visible	1
+		forecolor	1,1,1,1
+		text	"Press_3"
+		textscale	0.5
+	}
+}
